@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas{
+            width: 800px;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+</body>
+<script>
+    const can = document.getElementById('canvas');
+    const cxt = can.getContext('2d');
+    can.width = 800
+    can.height = 600
+    const  SCALE = 2,
+            arcArr = [
+                {x:180,y:30,l1x:40,l1y:40,l2x:20,l2y:170},
+                {x:20,y:170,l1x:15,l1y:210,l2x:20,l2y:250},
+                {x:20,y:250,l1x:40,l1y:380,l2x:180,l2y:390},
+                {x:180,y:390,l1x:380,l1y:410,l2x:580,l2y:390},
+                {x:580,y:390,l1x:720,l1y:380,l2x:740,l2y:250},
+                {x:740,y:250,l1x:745,l1y:210,l2x:740,l2y:170},
+                {x:740,y:170,l1x:720,l1y:40,l2x:580,l2y:30},
+                {x:580,y:30,l1x:380,l1y:10,l2x:180,l2y:30},
+            ]
+    let Arcs = []
+    class Arc{
+        constructor(x,y,l1x,l1y,l2x,l2y){
+            this.x = x
+            this.y = y
+            this.l1x = l1x
+            this.l1y = l1y
+            this.l2x = l2x
+            this.l2y = l2y
+        }
+        Draw(){
+            cxt.beginPath();
+            cxt.moveTo(this.x,this.y);
+            cxt.quadraticCurveTo(this.l1x,this.l1y,this.l2x,this.l2y);
+            cxt.stroke();
+            cxt.closePath()
+        }
+    }
+
+    let ArcDraw=()=>{
+        arcArr.map(v=>{
+            let newArc = new Arc(v.x,v.y,v.l1x,v.l1y,v.l2x,v.l2y)
+            Arcs.push(newArc)
+        })
+    }
+    ArcDraw()
+    console.log(Arcs)
+    Arcs.map(v=>{
+        v.Draw()
+    })
+
+
+//        cxt.beginPath();
+//        cxt.moveTo(20,170);
+//        cxt.lineTo(40,40);
+//        cxt.lineTo(180,30);
+//        cxt.stroke();
+//
+//        cxt.strokeStyle = "rgba(255,0,0,1)";
+//
+//        //绘制2次贝塞尔曲线
+//        cxt.beginPath();
+//        cxt.moveTo(20,170);
+//        cxt.quadraticCurveTo(40,40,180,30);
+//        cxt.stroke();
+//        cxt.closePath()
+///////////////////////////////////////////////
+        //绘制起始点、控制点、终点
+        //line 2
+//        cxt.beginPath();
+//        cxt.strokeStyle = "black";
+//        cxt.moveTo(20,170);
+//        cxt.lineTo(15,210);
+//        cxt.lineTo(20,250);
+//        cxt.stroke();
+//
+//        cxt.strokeStyle = "rgba(255,0,0,1)";
+//
+//        //绘制2次贝塞尔曲线
+//        cxt.beginPath();
+//        cxt.moveTo(20,170);
+//        cxt.quadraticCurveTo(15,210,20,250);
+//        cxt.stroke();
+//        cxt.closePath()
+///////////////////////////////////////////////
+        //绘制起始点、控制点、终点
+        //line3
+//        cxt.beginPath();
+//        cxt.strokeStyle = "black";
+//        cxt.moveTo(20,250);
+//        cxt.lineTo(40,380);
+//        cxt.lineTo(180,390);
+//        cxt.stroke();
+//
+//        cxt.strokeStyle = "rgba(255,0,0,1)";
+//
+//        //绘制2次贝塞尔曲线
+//        cxt.beginPath();
+//        cxt.moveTo(20,250);
+//        cxt.quadraticCurveTo(40,380,180,390);
+//        cxt.stroke();
+//        cxt.closePath()
+///////////////////////////////////////////////
+        //绘制起始点、控制点、终点
+        //line4
+//        cxt.beginPath();
+//        cxt.strokeStyle = "black";
+//        cxt.moveTo(180,390);
+//        cxt.lineTo(380,410);
+//        cxt.lineTo(580,390);
+//        cxt.stroke();
+//        cxt.strokeStyle = "rgba(255,0,0,1)";
+//
+//        //绘制2次贝塞尔曲线
+//        cxt.beginPath();
+//        cxt.moveTo(180,390);
+//        cxt.quadraticCurveTo(380,410,580,390);
+//        cxt.stroke();
+//        cxt.closePath();
+///////////////////////////////////////////////
+        //绘制起始点、控制点、终点
+        //line5
+//        cxt.beginPath();
+//        cxt.strokeStyle = "black";
+//        cxt.moveTo(580,390);
+//        cxt.lineTo(720,380);
+//        cxt.lineTo(740,250);
+//        cxt.stroke();
+//        cxt.strokeStyle = "rgba(255,0,0,1)";
+//
+//        //绘制2次贝塞尔曲线
+//        cxt.beginPath();
+//        cxt.moveTo(580,390);
+//        cxt.quadraticCurveTo(720,380,740,250);
+//        cxt.stroke();
+//        cxt.closePath();
+///////////////////////////////////////////////
+        //绘制起始点、控制点、终点
+        //line5
+//        cxt.beginPath();
+//        cxt.strokeStyle = "black";
+//        cxt.moveTo(740,250);
+//        cxt.lineTo(745,210);
+//        cxt.lineTo(740,170);
+//        cxt.stroke();
+//        cxt.strokeStyle = "rgba(255,0,0,1)";
+//
+//        //绘制2次贝塞尔曲线
+//        cxt.beginPath();
+//        cxt.moveTo(740,250);
+//        cxt.quadraticCurveTo(745,210,740,170);
+//        cxt.stroke();
+//        cxt.closePath();
+///////////////////////////////////////////////
+        //绘制起始点、控制点、终点
+        //line6
+//        cxt.beginPath();
+//        cxt.strokeStyle = "black";
+//        cxt.moveTo(740,170);
+//        cxt.lineTo(720,40);
+//        cxt.lineTo(580,30);
+//        cxt.stroke();
+//        cxt.strokeStyle = "rgba(255,0,0,1)";
+//
+//        //绘制2次贝塞尔曲线
+//        cxt.beginPath();
+//        cxt.moveTo(740,170);
+//        cxt.quadraticCurveTo(720,40,580,30);
+//        cxt.stroke();
+//        cxt.closePath();
+///////////////////////////////////////////////
+        //绘制起始点、控制点、终点
+        //line7
+//        cxt.beginPath();
+//        cxt.strokeStyle = "black";
+//        cxt.moveTo(580,30);
+//        cxt.lineTo(380,10);
+//        cxt.lineTo(180,30);
+//        cxt.stroke();
+//        cxt.strokeStyle = "rgba(255,0,0,1)";
+//
+//        //绘制2次贝塞尔曲线
+//        cxt.beginPath();
+//        cxt.moveTo(580,30);
+//        cxt.quadraticCurveTo(380,10,180,30);
+//        cxt.stroke();
+//        cxt.closePath();
+</script>
+</html>

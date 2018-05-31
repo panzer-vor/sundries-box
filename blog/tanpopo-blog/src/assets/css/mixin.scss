@@ -1,0 +1,209 @@
+$headHeight:80px;
+$footHeight:60px;
+$bgColor:#f1e8e8;
+$hoverColor: rgb(221, 190, 228);
+$footColor: rgba(0, 0, 0, 0.637);
+body{background-color: $bgColor};
+$footFontSize: 30px;
+$arrowSize: 80px;
+$arrowSizeP: 40px;
+$tabletWidth: " and (max-width: 1023px)";
+
+@mixin tablet(){
+  @media only screen and ( max-width: 1080px )
+  {
+    @content;
+  }
+}
+@mixin window(){
+  @media only screen and ( min-width: 1080px )
+  {
+    @content;
+  }
+}
+
+
+/*
+元素大小
+--wh($h:auto,$w:100%) width height
+  whl($l,$h:auto,$w:100%) line-height
+  wht($t:center,$h:auto,$w:100%) text-align
+  whlt($t:center,$l,$h:auto,$w:100%)
+  whd($h:auto,$w:auto) display:inline-block
+  wd($w:auto)
+
+弹性布局
+--Fj($j:center) justify-count
+  Fa($a:center) align-items
+  Fja($j:center,$a:center)
+  Fjd($j:center) flex-direction
+  Fjad($j:center,$a:center)
+  Fjw($j:center) flex-wrap
+  Fjadw($j:center,$a:center)
+
+网格布局
+--Ga($a...) grid-template-areas 每个a变量为一行 子类使用grid-area命名
+-横向
+--Gc($rws...,$cn:12,$cw:1fr) grid-template-rows grid-template-columns: repeat(cn, cw)
+  Gcg($g,$rws...,$cn:12,$cw:1fr) grid-gap
+
+-纵向
+--Gr($cws...,$rn:12,$rw:1fr)
+  Grg($g,$cws...,$rn:12,$rw:1fr)
+
+
+元素定位
+--posTR($T:0,$R:0,$Pos:absolute)
+  posTL($T:0,$L:0,$Pos:absolute)
+  posBR($B:0,$R:0,$Pos:absolute)
+  posBL($B:0,$L:0,$Pos:absolute)
+
+字体样式
+--sc($s,$c) font-size color
+  sw($s,$w:bold) font-weight
+  cw($c,$w:bold)
+  scw($s,$c,$w:bold)
+
+
+*/
+
+//大小
+@mixin wh($h:auto,$w:100%){
+  width: $w;
+  height: $h;
+}
+@mixin whl($l,$h:auto,$w:100%){
+  width: $w;
+  height: $h;
+  line-height: $l;
+}
+@mixin wht($t:center,$h:auto,$w:100%){
+  width: $w;
+  height: $h;
+  text-align: $t;
+}
+@mixin whlt($l,$t:center,$h:auto,$w:100%){
+  width: $w;
+  height: $h;
+  text-align: $t;
+  line-height: $l;
+}
+@mixin whd($h:auto,$w:auto){
+  width: $w;
+  height: $h;
+  display: inline-block;
+}
+@mixin wd($w:auto){
+  display: inline-block;
+  width: $w;
+}
+
+//定位
+@mixin posTR($T:0,$R:0,$Pos:absolute){
+  position: $Pos;
+  top: $T;
+  right: $R;  
+  
+}
+@mixin posTL($T:0,$L:0,$Pos:absolute){
+  position: $Pos;
+  top: $T;
+  left: $L;
+}
+@mixin posBR($B:0,$R:0,$Pos:absolute){
+  position: $Pos;
+  bottom: $B;
+  right: $R;
+}
+@mixin posBL($B:0,$L:0,$Pos:absolute){
+  position: $Pos;
+  bottom: $B;
+  left: $L;
+}
+
+//弹性
+@mixin Fj($j:center){
+  display: flex;
+  justify-content: $j;
+}
+@mixin Fa($a:center){
+  display: flex;
+  align-items: center;
+}
+@mixin Fja($j:center,$a:center){
+  display: flex;
+  align-items: $a;
+  justify-content: $j;
+}
+@mixin Fjd($j:center){
+  display: flex;
+  justify-content: $j;
+  flex-direction: column;
+}
+@mixin Fjad($j:center,$a:center){
+  display: flex;
+  justify-content: $j;
+  align-items: $a;
+  flex-direction: column;
+}
+@mixin Fjw($j:center){
+  display: flex;
+  justify-content: $j;
+  flex-wrap: wrap;
+}
+@mixin Fjadw($j:center,$a:center){
+  display: flex;
+  justify-content: $j;
+  align-items: $a;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+//网格
+@mixin Ga($a...){
+  grid-template-areas:$a
+}
+////横向布局
+@mixin Gc($cn:12,$cw:1fr,$rws...){
+  display: grid;
+  grid: $rws/repeat($cn,$cw);
+}
+@mixin Gcg($g,$cn:12,$cw:1fr,$rws...){
+  display: grid;
+  grid: $rws/repeat($cn,$cw);
+  grid-gap:$g
+}
+////纵向布局
+@mixin Gr($rn:12,$rw:1fr,$cws...){
+  display: grid;
+  grid: $cws/repeat($rn,$rw);
+}
+@mixin Grg($g,$rn:12,$rw:1fr,$cws...){
+  display: grid;
+  grid: $cws/repeat($rn,$rw);
+  grid-gap:$g
+}
+
+
+//字体
+@mixin sc($s,$c){
+  font-size: $s;
+  color: $c;
+}
+@mixin sw($s,$w:bold){
+  font{
+    size:$s;
+    weight:$w;
+  }
+}
+@mixin cw($c,$w:bold){
+  color: $c;
+  font-weight: $w;
+}
+@mixin scw($s,$c,$w:bold){
+  font{
+    size:$s;
+    weight:$w;
+  }
+  color: $c;
+}

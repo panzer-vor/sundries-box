@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<video src="" controls></video>
+<button>点击录音</button>
+<button>点击结束录音</button>
+<script src="functions.js"></script>
+<script>
+  let btns = document.querySelectorAll('button'),video = document.querySelector('video'),gRecorder = null;
+  btns[0].addEventListener('click',function () {
+    if(!hasGetUserMedia()){
+      alert('当前浏览器不支持获取录音')
+    }else {
+      navigator.getUserMedia(
+        {audio:true},
+        function (stream) {
+          gRecorder = new SRecorder(stream);
+          gRecorder.start()
+        },
+        function(err){
+          alert('您的浏览器目前不支持语音输入');
+        }
+      )
+    }
+  })
+  btns[1].addEventListener('click',function () {
+    blobToDataURL(gRecorder.getBlob(),function (e) {
+      document.querySelector('video').src = e;
+    })
+    gRecorder.stop();
+    gRecorder.clear();
+  })
+</script>
+</body>
+</html>

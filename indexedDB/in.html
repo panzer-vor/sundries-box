@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<table class="table">
+    <tr>
+        <th>id</th><th>用户名</th><th>密码</th><th>注册时间</th>
+    </tr>
+    <tr v-for="data in userdata">
+        <td>
+            {{data.id}}
+        </td>
+        <td>
+            <input type="text" v-model="data.user" >
+        </td>
+        <td>
+            <input type="text" v-model="data.pass" >
+        </td>
+        <td>{{data.time}}</td>
+        <td class="btn btn-danger" @click="cancel(data.id)" style="cursor: pointer">删除</td>
+        <td class="btn btn-dark"  @click="edit(data.id,data.user,data.pass,data.time)" style="cursor: pointer">修改完成</td>
+    </tr>
+</table>
+</body>
+<script src="vue.js"></script>
+<script src="db.js"></script>
+</html>

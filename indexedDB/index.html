@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+    <div class="form-group">
+        <label for="" class="">用户</label>
+        <input type="text"  id="username" class="form-control">
+    </div>
+    <div>
+        <label for="">密码</label>
+        <input type="text" id="password" class="form-control">
+    </div>
+    <div class="form-group">
+        <input type="button" id="setinfo" value="注册" class="form-check">
+    </div>
+
+</body>
+<script src="db.js"></script>
+<script>
+    const username = document.getElementById("username"),
+           password = document.getElementById("password");
+    let setinfo = document.getElementById("setinfo")
+    setinfo.onclick=function () {
+        let userData = {
+            "user" : username.value,
+            "pass" : password.value,
+            "time" : new Date().getTime()
+        };
+        method.add(userData);
+        window.open("in.html","_self")
+    }
+    
+</script>
+</html>

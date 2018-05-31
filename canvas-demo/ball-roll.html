@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div style="position: relative">
+    <div style="position: absolute;z-index: -1"><img src="cb.png" alt=""></div>
+    <canvas width="1000" height="1000"></canvas>
+</div>
+<script>
+    //      创建一只猫
+    //    class Animal{
+    //        constructor(name){
+    //            this.name = name;
+    //        }
+    //        say(){
+    //            alert(`${this.name} say miao`)
+    //        }
+    //    }
+    //    class cat extends Animal{
+    //        constructor(name,color){
+    //            super(name);
+    //            this.color = color;
+    //        }
+    //        run(){
+    //            alert(`the ${this.color} ${this.name} is running`)
+    //        }
+    //    }
+    //    let jojo = new cat('alis','blue');
+    //    console.log(jojo)
+    //    console.log(jojo.name)
+    //    console.log(jojo.color)
+    //    console.log(jojo.say())
+    //    console.log(jojo.run())
+
+    //面向对象canvas圆弧运动
+    window.onload = function () {
+        const canvas = document.querySelector("canvas");
+        const context = canvas.getContext("2d");
+        context.lineWidth = 5;
+        context.strokeStyle = "blue";
+        let a = 0
+        class Arc{
+            constructor(x,y,r,p,i){
+                this.x = x;
+                this.y = y;
+                this.r = r;
+                this.p = p;
+                this.i = i;
+            }
+        }
+        class extentArc extends Arc{
+            drawArc(){
+                context.beginPath()
+                context.arc(this.x,this.y,this.r,a*Math.PI*this.i,(a+this.p)*Math.PI*this.i)
+                context.stroke();
+                context.closePath()
+            };
+        }
+
+        let bigArc = new extentArc(320,310,290,.8,1)
+        let smallArc = new extentArc(320,310,220,.8,-1)
+        setInterval(()=>{
+            context.clearRect(0,0,1000,1000);
+            a += .01
+            bigArc.drawArc()
+            smallArc.drawArc();
+        },18)
+
+    }
+
+
+
+</script>
+</body>
+</html>
+

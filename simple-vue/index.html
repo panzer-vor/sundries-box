@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./simple-vue.js"></script>
+</head>
+<body>
+    <div id="App">
+        
+        <input type="text" v-model="number">
+        <button v-click="add">增加</button>
+    
+        <h1 v-bind="number"></h1>
+    </div>
+    
+</body>
+<script>
+    window.onload = ()=>{
+        new Vue({
+            el:"#App",
+            data:{
+                number:0,
+            },
+            methods:{
+                add(){
+                    this.number++;
+                }
+            }
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,19 @@
+
+*{margin: 0;padding: 0}
+body{font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;overflow-x: hidden;width: 100%;color: #333;background: #fafafa}
+html, body, div, span,  h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, address, big, cite, code, del, em, font, img, ins, small, strong, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend {  margin: 0;  padding: 0;}
+input,select{vertical-align:middle;}
+ol, ul { list-style: none outside none;}
+textarea,input{outline:none; resize:none;}
+h1,h2,h3,h4,h5,h6,ul,li,dl,dt,dd,p,input{margin:0; padding:0;font-weight:normal;}
+li{list-style:none;}
+i,em{font-style:normal;}
+select{margin:0;padding:0;}
+:focus {outline: 0 none;}
+a img { border: 0 none;}
+img { margin:0; padding:0;border:0;}
+table { empty-cells: show;border-collapse:collapse;border-spacing:0;}
+em,i{ font-style:normal;}
+input, textarea, select, button { border: none; outline: none; font-family: "Microsoft YaHei"; background: none;}
+a{text-decoration : none;color: #333}
+

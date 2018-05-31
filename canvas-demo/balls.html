@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            height: 6000px;
+        }
+        #canvas{
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+    const  can = document.querySelector('canvas'),
+            context = can.getContext("2d"),
+            H = can.offsetHeight,W = can.offsetWidth,
+            RADIUS = 8, //球半径
+            MARGIN = 100, //字母之间的间隙
+            COUNT = 80, //滚动次数
+            L = 20, //小球之间的间隙
+            ELEFT = 200, //距离左边位置
+            ETop = 300, //距离顶部位置
+            colors = ["#33B5E5","#0099CC","#AA66CC","#9933CC","#99CC00","#669900","#FFBB33","#FF8800","#FF4444","#CC0000"], //彩色小球的颜色
+            codesArr = ['I','nbsp','L','o','v','e','nbsp','Y','o','u' ] //文字
+            rlArr = [-1,1]
+    let ballArr = [],
+        ost = window.scrollY,
+        nst,
+        codes = {
+        I:[
+            [0,1,1,1,0,0,0],
+            [0,0,1,0,0,0,0],
+            [0,0,1,0,0,0,0],
+            [0,0,1,0,0,0,0],
+            [0,0,1,0,0,0,0],
+            [0,1,1,1,0,0,0],
+        ],
+        L:[
+            [1,0,0,0,0,0,0],
+            [1,0,0,0,0,0,0],
+            [1,0,0,0,0,0,0],
+            [1,0,0,0,0,0,0],
+            [1,0,0,0,0,0,0],
+            [1,1,1,1,0,0,0],
+        ],
+        o:[
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,0,0,1,0,0],
+            [0,1,0,0,1,0,0],
+            [0,0,1,1,0,0,0],
+        ],
+        v:[
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,1,0,0,0,1,0],
+            [0,0,1,0,1,0,0],
+            [0,0,0,1,0,0,0],
+        ],
+        e:[
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,1,1,1],
+            [0,0,0,1,0,0,0],
+            [0,0,0,0,1,1,1],
+            [0,0,0,1,0,0,0],
+            [0,0,0,0,1,1,1],
+        ],
+        Y:[
+            [1,0,0,0,0,0,1],
+            [0,1,0,0,0,1,0],
+            [0,0,1,0,1,0,0],
+            [0,0,0,1,0,0,0],
+            [0,0,0,1,0,0,0],
+            [0,0,0,1,0,0,0],
+        ],
+        u:[
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,1,0,0,0,1,0],
+            [0,1,0,0,0,1,0],
+            [0,1,0,0,0,1,0],
+            [0,0,1,1,1,0,0],
+        ],
+        nbsp:[
+            [0,0],
+            [0,0],
+            [0,0],
+            [0,0],
+            [0,0],
+            [0,0],
+        ]
+    }
+    can.width = W
+    can.height = H
+    class Ball{
+        constructor(x,y,c,l,t){
+            this.r = RADIUS
+            this.x = x
+            this.y = y
+            this.color = c
+            this.l = l
+            this.t = t
+            this.ls = this.l/COUNT
+            this.ts = this.t/COUNT
+        }
+        drawBall(){
+            context.fillStyle = this.color
+            context.beginPath()
+            context.arc(this.x+this.l,this.y+this.t,this.r,0,2*Math.PI)
+            context.fill();
+            context.closePath()
+        };
+    }
+
+    let drawCodes =(arr)=>{
+        arr.forEach((a,num)=>{
+            codes[a].forEach((v,i)=>{
+                v.forEach((val,index)=>{
+                    if (val){
+                        let x = L*index,
+                            y = L*i,
+                            c = colors[~~(Math.random()*10)],
+                            l = (Math.random()*W+W)*rlArr[~~(Math.random()*2)],
+                            t = (Math.random()*H+H)*rlArr[~~(Math.random()*2)],
+                            ball = new Ball(x+MARGIN*num,y,c,l,t)
+                        ballArr.push(ball)
+                    }
+                })
+            })
+        })
+    }
+    let ballReturn = ()=>{
+        ballArr.forEach(v=>{
+            v.l-50<ELEFT&&v.l+50>ELEFT?v.l=ELEFT:v.l-=v.ls
+            v.t-50<ETop&&v.t+50>ETop?v.t=ETop:v.t-=v.ts
+            v.drawBall()
+        })
+    }
+//初始化
+    drawCodes(codesArr)
+    window.onscroll=()=>{
+        context.clearRect(0,0,W,H)
+        ballReturn()
+    }
+
+
+
+</script>
+</body>
+</html>
